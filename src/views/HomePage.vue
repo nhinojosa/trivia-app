@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue'
 import useAPI from '@/composables/useAPI';
 import BaseTitle from '@/components/BaseTitle.vue';
 
-const {categories, getCategories} = useAPI()
+const { categories, getCategories } = useAPI()
 
 onMounted(async () => {
   await getCategories()
@@ -13,8 +13,12 @@ onMounted(async () => {
 
 <template>
   <BaseTitle>TRIVIA APPLICATION</BaseTitle>
-
-  <div v-for="category in categories" key="category.id">
-    {{ category.name }}
+  <div class="grid flex-grow grid-cols-4 gap-12 m-20">
+    <RouterLink v-for="category in categories" 
+    :to="`/question/category/${category.id}`"
+    :key="category.id" 
+    class="bg-white text-center flex h-32 items-center justify-center rounded-lg border-4 border-slate-500 py-4 font-bold uppercase transition-colors duration-30 hover:cursor-pointer hover:border-red-500 hover:bg-red-500 hover:text-white">
+      {{ category.name }}
+    </RouterLink>
   </div>
 </template>
