@@ -3,6 +3,8 @@ import { onMounted, ref } from "vue";
 import useAPI from "@/composables/useAPI";
 import { useRoute } from "vue-router"
 import BaseTitle from "@/components/BaseTitle.vue";
+import DifficultyChip from "@/components/DifficultyChip.vue";
+
 
 const api = useAPI()
 const question = ref(null)
@@ -55,6 +57,7 @@ const shuffle = (array) => {
     <div class="grid w-full flex-grow grid-cols-2 gap-8">
       <div v-html="answer.answer" v-for="answer in answers" :key="answer.id" class="bg-green-500 flex items-center justify-center rounded-lg text-center text-4xl text-white py-10 px-2"></div>
     </div>
+    <DifficultyChip :difficulty="question.difficulty"></DifficultyChip>
   </div>
    <div v-else class="loading">Loading...</div>
 
